@@ -1,0 +1,11 @@
+.j-border {
+    @apply border border-dashed border-red;
+}
+.max-ease-out {
+    @apply transition-max-height duration-300;
+    transition-timing-function: cubic-bezier(0, 1, 0, 1);
+}
+.max-ease-in {
+    @apply transition-max-height duration-400;
+    transition-timing-function: cubic-bezier(1, 0.2, 1, 0.24);
+}

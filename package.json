@@ -9,15 +9,11 @@
         "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
         "lint": "prettier --plugin-search-dir . --check .",
-        "format": "prettier --plugin-search-dir . --write .",
-        "prepare": "yarn run smui-theme-light && yarn run smui-theme-dark",
-        "smui-theme-light": "smui-theme compile static/smui.css -i src/theme",
-        "smui-theme-dark": "smui-theme compile static/smui-dark.css -i src/theme/dark"
+        "format": "prettier --plugin-search-dir . --write ."
     },
     "devDependencies": {
         "@iconify-json/carbon": "^1.1.14",
         "@iconify-json/fluent": "^1.1.17",
-        "@smui/button": "^7.0.0-beta.0",
         "@sveltejs/adapter-auto": "^1.0.0",
         "@sveltejs/kit": "^1.0.0",
         "@sveltejs/vite-plugin-svelte": "^2.0.2",
@@ -27,16 +23,22 @@
         "@unocss/preset-uno": "^0.48.4",
         "@unocss/preset-web-fonts": "^0.48.4",
         "@unocss/transformer-directives": "^0.48.4",
+        "bootstrap": "^5.2.3",
         "overlayscrollbars": "^2.0.3",
         "overlayscrollbars-svelte": "^0.4.0",
         "prettier": "^2.8.0",
         "prettier-plugin-svelte": "^2.8.1",
-        "smui-theme": "^7.0.0-beta.0",
+        "prisma": "^4.9.0",
         "svelte": "^3.54.0",
         "svelte-check": "^3.0.1",
+        "sveltestrap": "^5.10.0",
         "typescript": "^4.9.3",
         "unocss": "^0.48.4",
-        "vite": "^4.0.0"
+        "vite": "^4.0.0",
+        "xlsx": "^0.18.5"
     },
-    "type": "module"
+    "type": "module",
+    "dependencies": {
+        "@prisma/client": "^4.9.0"
+    }
 }

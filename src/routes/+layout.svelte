@@ -6,7 +6,8 @@ import SideMenu from '~lib/side-menu/SideMenu.svelte'
 import PageTransitions from '~lib/PageTransitions.svelte'
 import 'overlayscrollbars/overlayscrollbars.css'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte'
-import '~/assets/main.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '~routes/styles.css'
 
 /** @type {import('./$types').LayoutData} */
 export let data
@@ -72,7 +73,7 @@ let items = [
 <div class="h-screen flex flex-col">
     <header
         class="flex-none h-60px flex gap-2 items-center
-                border-b border-b-solid border-gray-200 px-5"
+                border-b border-b-solid border-gray-200 px-1rem"
     >
         <div class="text-1.2rem">연극원 입시 관리 시스템</div>
         <button
@@ -85,23 +86,23 @@ let items = [
         </button>
     </header>
     <div class="flex-auto flex overflow-y-hidden">
-        <OverlayScrollbarsComponent
-            options={{ scrollbars: { autoHide: 'leave', autoHideDelay: 300 } }}
-            class="flex-none w-250px "
+        <div
+            class="flex-none w-250px border-r duration-200 flex"
+            class:w-250px={isOpen}
+            class:translate-x--250px={!isOpen}
+            class:w-0={!isOpen}
         >
-            <aside
-                class="flex-none w-250px border-r
-                   duration-200 pt-2rem
-                    overflow-x-hidden overflow-y-auto"
-                class:w-250px={isOpen}
-                class:translate-x--250px={!isOpen}
-                class:w-0={!isOpen}
+            <OverlayScrollbarsComponent
+                options={{ scrollbars: { autoHide: 'leave', autoHideDelay: 300 } }}
+                class="flex-auto"
             >
-                <div class="pr-2">
-                    <SideMenu {items} routeId={data.routeId} />
-                </div>
-            </aside>
-        </OverlayScrollbarsComponent>
+                <aside class="pt-1rem overflow-x-hidden overflow-y-auto">
+                    <div class="pr-2">
+                        <SideMenu {items} routeId={data.routeId} />
+                    </div>
+                </aside>
+            </OverlayScrollbarsComponent>
+        </div>
         <div class="overflow-y-auto flex-auto flex flex-col">
             <OverlayScrollbarsComponent
                 options={{ scrollbars: { autoHide: 'leave', autoHideDelay: 300 } }}

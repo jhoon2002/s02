@@ -1,17 +1,53 @@
-import PrismaClient from '$lib/prisma'
-const prisma = new PrismaClient()
+import prisma from '$lib/prisma'
+// const prisma = new PrismaClient()
 import * as XLSX from 'xlsx/xlsx.mjs'
 import * as fs from 'fs'
 import path from 'path'
 import fields from '$lib/fields'
 import { replaceToBlank as rtb } from '$lib/utils/string'
 import { pipe, page } from 'iter-ops'
-
+import { fail } from '@sveltejs/kit'
 
 export const actions = {
     default: async ({ request }) => {
         const data = await request.formData()
         const file = data.get('file')
+        const season = data.get('season')
+        const degrees = data.get('degrees')
+        const errors = []
+        console.log(file.type)
+        if (!season) {
+            errors.push({
+                field: 'season',
+                message: '[season] 입시 시기를 입력하지 않았습니다.',
+            })
+        }
+        if (!degrees) {
+            errors.push({
+                field: 'degrees',
+                message: '[degrees] 과정을 선택하지 않았습니다.',
+            })
+        }
+        if (file.name === 'undefined') {
+            errors.push({
+                field: 'file',
+                message: '[file] 파일을 선택하지 않았습니다.',
+            })
+        } else if (
+            !(
+                file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                file.type === 'application/vnd.ms-excel'
+            )
+        ) {
+            errors.push({
+                field: 'file',
+                message: '[file] 처리할 수 없는 파일 유형입니다.',
+            })
+        }
+        if (errors.length > 0) {
+            return fail(400, { errors })
+        }
+
         let filename
 
         try {
@@ -99,7 +135,7 @@ export const actions = {
                 skipDuplicates: false,
             })*/
             return {
-                count: count
+                count: count,
             }
         } catch (e) {
             console.log(e)

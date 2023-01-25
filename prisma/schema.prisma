@@ -17,22 +17,43 @@ model member {
 }
 
 model examinees {
-  no            String      @id
-  gun           String
-  campus        String
-  type          String
-  modan         String
-  modan_code    String
-  day           String
-  name          String
-  jumin         String
-  phone         String
-  cellphone     String
-  email         String
-  high          String
-  high_code     String
-  graduated     String
-  state         String
-  use_hsb       String
-  receipted     DateTime
+  no                String
+  type              String
+  school            String
+  department        String
+  major             String
+  id                String        @id
+  name              String
+  ns_type           String
+  special           String
+  birthday          String
+  gender            String
+  ns_year           String
+  ns_code           String
+  ns_name           String
+  ns_department     String
+  phone             String
+  cellphone         String
+  email             String
+  zip               String
+  address1          String
+  address2          String
+  nation            String
+  pa_phone          String
+  pa_cellphone      String
+  pa_email          String
+  pa_name           String
+  soldier           String
+  agree_flag        String
+  grad_date         String
+  grad_type         String
+  pa_relation       String
+  receipted         String
+  hanja             String
+  memo              String
+  etc               String
+  except_flag       String
+  print             String
+  created           DateTime @default(now())
+  updated           DateTime @updatedAt
 }

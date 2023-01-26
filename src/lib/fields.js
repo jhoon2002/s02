@@ -1,4 +1,7 @@
 export default {
+    구분: 'category',
+    과정: 'degrees',
+    시기: 'season',
     순번: 'no',
     전형구분: 'type',
     원: 'school',

@@ -1,13 +1,12 @@
 <script>
 import 'uno.css'
 import '@unocss/reset/tailwind.css'
-import '~routes/styles.css'
 import SideMenu from '~lib/side-menu/SideMenu.svelte'
 import PageTransitions from '~lib/PageTransitions.svelte'
 import 'overlayscrollbars/overlayscrollbars.css'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import '~routes/styles.css'
+import '~lib/css/styles.css'
 
 /** @type {import('./$types').LayoutData} */
 export let data

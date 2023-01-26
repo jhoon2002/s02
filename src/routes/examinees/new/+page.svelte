@@ -95,7 +95,7 @@ export let some
     </div>
     <Button>확인</Button>
 </Form>
-{#if form?.errors.length > 0}
+{#if form?.errors?.length > 0}
     <ul class="p-0 mt-5">
         {#each form.errors as error}
             <li>{error.message}</li>

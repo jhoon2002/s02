@@ -14,5 +14,5 @@
 }
 /* sveltestrap 때문에.. */
 li a {
-    text-decoration: none;
+    @apply no-underline;
 }

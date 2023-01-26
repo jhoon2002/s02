@@ -17,6 +17,9 @@ model member {
 }
 
 model examinees {
+  category          String
+  degrees           String
+  season            String
   no                String
   type              String
   school            String

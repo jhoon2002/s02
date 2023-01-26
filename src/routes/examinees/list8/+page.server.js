@@ -1,5 +1,4 @@
-import PrismaClient from '$lib/prisma'
-const prisma = new PrismaClient()
+import prisma from '$lib/prisma'
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ params }) {

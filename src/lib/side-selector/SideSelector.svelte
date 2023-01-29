@@ -16,7 +16,8 @@ async function handleSubmit(event) {
         body: data,
     })
     const result = deserialize(await response.text())
-    await applyAction(result)
+    console.log(result.data.items)
+    await applyAction(result.data.items)
 }
 </script>
 

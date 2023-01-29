@@ -87,9 +87,9 @@ export async function GET({ url }) {
     const season = url.searchParams.get('season')
     const type = url.searchParams.get('type')
     const department = url.searchParams.get('department')
-    const aaa = url.searchParams.get('aaa')
+    const some = url.searchParams.get('some')
 
-    console.log('=======> aaa', aaa)
+    console.log('=======> some', some)
 
     const res = await prisma.examinees.findMany({
         select: {

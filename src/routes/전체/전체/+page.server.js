@@ -5,10 +5,11 @@ export const actions = {
         const response = await fetch(
             '/api/examinees?' +
                 new URLSearchParams({
-                    aaa: '7777',
+                    some: '7777',
                 }).toString(),
         )
         const items = await response.json()
+        console.log(items)
         return {
             items,
         }

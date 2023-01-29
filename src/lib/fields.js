@@ -9,6 +9,7 @@ export default {
     세부모집: 'major',
     수험번호: 'id',
     이름: 'name',
+    자격탈락: 'disqualified_flag',
     학력구분: 'ns_type', //예술사
     특별타입: 'special', //예술사
     생년월일: 'birthday',

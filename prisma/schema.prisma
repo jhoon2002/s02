@@ -27,6 +27,7 @@ model examinees {
   major             String
   id                String        @id
   name              String
+  disqualified_flag Boolean     @default(false)
   ns_type           String
   special           String
   birthday          String

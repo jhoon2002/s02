@@ -1,72 +1,21 @@
 <script>
 import 'uno.css'
 import '@unocss/reset/tailwind.css'
-import SideMenu from '~lib/side-menu/SideMenu.svelte'
-import PageTransitions from '~lib/PageTransitions.svelte'
+import SideMenu from '$lib/side-menu/SideMenu.svelte'
+import PageTransitions from '$lib/PageTransitions.svelte'
 import 'overlayscrollbars/overlayscrollbars.css'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import '~lib/css/styles.css'
+import '$lib/css/styles.css'
+import items from '$lib/menus.js'
+import TopMenu from '$lib/top-menu/TopMenu.svelte'
+import { goto } from '$app/navigation'
+import topMenus from '$lib/topMenus.js'
+import SideSelector from '$lib/side-selector/SideSelector.svelte'
 
 /** @type {import('./$types').LayoutData} */
 export let data
 
 let isOpen = true
-let items = [
-    {
-        text: 'HOME',
-        icon: 'carbon:home',
-        path: '/',
-    },
-    {
-        text: '시험 대상자',
-        icon: 'fluent:accessibility-16-regular',
-        children: [
-            {
-                text: '대상자 입력',
-                icon: 'fluent:alert-16-regular',
-                path: '/examinees/new',
-            },
-            {
-                text: '대상자 목록',
-                icon: 'fluent:animal-cat-16-regular',
-                children: [
-                    {
-                        text: '8월입시',
-                        icon: 'fluent:attach-16-filled',
-                        path: '/examinees/list8',
-                    },
-                    {
-                        text: '10월입시',
-                        icon: 'fluent:balloon-16-regular',
-                        path: '/examinees/list10',
-                    },
-                    {
-                        text: '11월입시',
-                        icon: 'fluent:beaker-16-regular',
-                        path: '/examinees/list11',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        text: '개발 정보',
-        icon: 'fluent:bookmark-multiple-16-regular',
-        children: [
-            {
-                text: '개발 환경',
-                icon: 'fluent:bowl-chopsticks-16-regular',
-                path: '/dev/env',
-            },
-            {
-                text: '스타일 가이드',
-                icon: 'carbon:asterisk',
-                path: '/dev/style-guide',
-            },
-        ],
-    },
-]
 </script>
 
 <div class="h-screen flex flex-col">
@@ -74,7 +23,17 @@ let items = [
         class="flex-none h-60px flex gap-2 items-center
                 border-b border-b-solid border-gray-200 px-1rem"
     >
-        <div class="text-1.2rem">연극원 입시 관리 시스템</div>
+        <div
+            class="text-1.2rem hover:bg-gray-100 px-2 py-1 rounded cursor-pointer"
+            on:click={() => {
+                goto('/')
+            }}
+            on:keyup={() => {
+                goto('/')
+            }}
+        >
+            연극원 입시 관리 시스템
+        </div>
         <button
             class="border-none p-1
                     rounded-md cursor-pointer
@@ -83,10 +42,13 @@ let items = [
         >
             <div class="fluent:navigation-16-regular text-1.2rem" />
         </button>
+        <div>
+            <TopMenu items={topMenus} />
+        </div>
     </header>
     <div class="flex-auto flex overflow-y-hidden">
         <div
-            class="flex-none w-250px border-r duration-200 flex"
+            class="flex-none w-250px duration-200 flex overflow-x-hidden"
             class:w-250px={isOpen}
             class:translate-x--250px={!isOpen}
             class:w-0={!isOpen}
@@ -95,9 +57,10 @@ let items = [
                 options={{ scrollbars: { autoHide: 'leave', autoHideDelay: 300 } }}
                 class="flex-auto"
             >
-                <aside class="pt-1rem overflow-x-hidden overflow-y-auto">
+                <aside class="pt-0.5rem overflow-y-auto w-250px">
                     <div class="pr-2">
-                        <SideMenu {items} routeId={data.routeId} />
+                        <!-- <SideMenu {items} routeId={data.routeId} /> -->
+                        <SideSelector />
                     </div>
                 </aside>
             </OverlayScrollbarsComponent>
@@ -109,7 +72,7 @@ let items = [
             >
                 <div class="flex-auto h-full flex flex-col">
                     <article class="flex-auto">
-                        <div class="p-5">
+                        <div class="px-1.8rem pt-1.5rem pb-5rem">
                             <PageTransitions refresh={data.routeId}>
                                 <slot />
                             </PageTransitions>

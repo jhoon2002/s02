@@ -12,6 +12,7 @@ export let routeId
                 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100
                 dark:hover:bg-gray-700"
         on:mouseover={() => (isOver = true)}
+        on:focus={isOver}
         on:mouseleave={() => (isOver = false)}
     >
         <div class="w-25px flex justify-center">

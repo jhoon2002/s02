@@ -5,7 +5,7 @@ import transformerDirectives from '@unocss/transformer-directives'
 import { extractorSvelte } from '@unocss/core'
 
 export default defineConfig({
-    // mode: 'svelte-scoped',
+    mode: 'svelte-scoped',
     extractors: [extractorSvelte],
     presets: [
         presetUno(),

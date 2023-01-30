@@ -17,6 +17,9 @@ model member {
 }
 
 model examinees {
+  category          String
+  degrees           String
+  season            String
   no                String
   type              String
   school            String
@@ -24,6 +27,7 @@ model examinees {
   major             String
   id                String        @id
   name              String
+  disqualified_flag Boolean     @default(false)
   ns_type           String
   special           String
   birthday          String

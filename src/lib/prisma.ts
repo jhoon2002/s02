@@ -1,4 +1,14 @@
+/*
 import Prisma, * as PrismaAll from '@prisma/client'
 
 const PrismaClient = Prisma?.PrismaClient || PrismaAll?.PrismaClient
-export default PrismaClient
+
+const prisma = new PrismaClient()
+export default prisma
+*/
+import { PrismaClient } from '@prisma/client'
+
+if (!global.prisma) {
+    global.prisma = new PrismaClient()
+}
+export default global.prisma

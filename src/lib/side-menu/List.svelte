@@ -1,6 +1,6 @@
 <script>
 import MenuIcon from './MenuIcon.svelte'
-import { findRoute } from '~lib/utils/route.js'
+import { findRoute } from '$lib/utils/route.js'
 import { onMount } from 'svelte'
 
 export let item
@@ -28,6 +28,7 @@ onMount(() => {
         aria-controls="dropdown-example"
         data-collapse-toggle="dropdown-example"
         on:mouseover={() => (isOver = true)}
+        on:focus={isOver}
         on:mouseleave={() => (isOver = false)}
         on:click={() => (isOpen = !isOpen)}
     >

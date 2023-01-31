@@ -2,7 +2,7 @@
 import { clickOutside } from '$lib/utils/clickOutside.js'
 import Item from '$lib/top-menu/Item.svelte'
 export let item
-export let subItems
+// export let subItems
 export let open = false
 </script>
 

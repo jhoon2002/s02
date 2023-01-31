@@ -7,29 +7,25 @@ export let data
 <table>
     <thead>
         <tr>
+            <th>구분</th>
+            <th>시기</th>
+            <th>전형</th>
+            <th>과(전공)</th>
             <th>수험번호</th>
             <th>이름</th>
             <th>지원자격</th>
-            <th>구분</th>
-            <th>과정</th>
-            <th>시기</th>
-            <th>전형</th>
-            <th>과</th>
-            <th>전공</th>
         </tr>
     </thead>
     <tbody>
         {#each data.items as item}
             <tr>
+                <td>{item.category}</td>
+                <td>{item.season}</td>
+                <td>{item.type}</td>
+                <td>{item.majors}</td>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.disqualified_flag}</td>
-                <td>{item.category}</td>
-                <td>{item.degrees}</td>
-                <td>{item.season}</td>
-                <td>{item.type}</td>
-                <td>{item.department}</td>
-                <td>{item.major}</td>
             </tr>
         {/each}
     </tbody>

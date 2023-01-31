@@ -81,15 +81,20 @@ export async function GET({ url }) {
     // console.log('url', url)
     const name = url.searchParams.get('name')
     const id = url.searchParams.get('id')
-    const disqualified_flag = url.searchParams.get('disqualified_flag')
-    const category = url.searchParams.get('category')
-    const degrees = url.searchParams.get('degrees')
-    const season = url.searchParams.get('season')
-    const type = url.searchParams.get('type')
-    const department = url.searchParams.get('department')
-    const some = url.searchParams.get('some')
+    const disqualified = url.searchParams.get('disqualified')
+    const category = url.searchParams.getAll('category')
+    const season = url.searchParams.getAll('season')
+    const type = url.searchParams.getAll('type')
+    const majors = url.searchParams.getAll('majors')
+    // const degrees = url.searchParams.getAll('degrees')
+    // const types = []
+    // console.log('type', type)
+    // console.log(type.map((item) => ({ type: item })))
 
-    console.log('=======> some', some)
+    const department = url.searchParams.get('department')
+    // const some = url.searchParams.get('some')
+
+    // console.log('=======> some', some)
 
     const res = await prisma.examinees.findMany({
         select: {
@@ -100,15 +105,27 @@ export async function GET({ url }) {
             degrees: true,
             season: true,
             type: true,
-            department: true,
-            major: true,
+            majors: true,
         },
         where: {
-            type: '교육기회균등',
+            AND: [
+                {
+                    OR: category.map((item) => ({ category: item })),
+                },
+                {
+                    OR: season.map((item) => ({ season: item })),
+                },
+                {
+                    OR: type.map((item) => ({ type: item })),
+                },
+                {
+                    OR: majors.map((item) => ({ majors: item })),
+                },
+            ],
         },
         orderBy: [{ id: 'asc' }, { category: 'asc' }],
         skip: 0,
-        take: 5,
+        take: 20,
     })
 
     return json(res)

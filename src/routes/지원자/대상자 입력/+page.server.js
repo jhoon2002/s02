@@ -69,11 +69,14 @@ export const actions = {
         const jsa = XLSX.utils.sheet_to_json(sheet)
         let rows = []
         for (let ex of jsa) {
-            ex['세부모집'] === '연기(여)'
-                ? (ex['세부모집'] = '여자')
-                : ex['세부모집'] === '연기(남)'
-                ? (ex['세부모집'] = '남자')
-                : false
+            const jeongong =
+                ex['세부모집'] === '연기(여)'
+                    ? '(여자)'
+                    : ex['세부모집'] === '연기(남)'
+                    ? '(남자)'
+                    : ex['학과'] === '연출' || ex['학과'] === '무대미술'
+                    ? ''
+                    : '(' + ex['세부모집'] + ')'
             rows.push({
                 [fields['구분']]: degrees === '예술사과정' ? '예술사' : '예술전문사',
                 [fields['과정']]: degrees,
@@ -83,7 +86,7 @@ export const actions = {
                 [fields['원']]: rtb(ex['원']),
                 [fields['학과']]: rtb(ex['학과']),
                 [fields['세부모집']]: rtb(ex['세부모집']),
-                [fields['과(전공)']]: rtb(ex['학과']) + '과(' + rtb(ex['세부모집']) + ')',
+                [fields['과(전공)']]: rtb(ex['학과']) + '과' + jeongong,
                 [fields['수험번호']]: rtb(ex['수험번호']),
                 [fields['이름']]: rtb(ex['이름']),
                 [fields['자격탈락']]: false,

@@ -7,6 +7,7 @@ export default {
     원: 'school',
     학과: 'department',
     세부모집: 'major',
+    '과(전공)': 'majors',
     수험번호: 'id',
     이름: 'name',
     자격탈락: 'disqualified_flag',

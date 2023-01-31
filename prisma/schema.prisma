@@ -25,7 +25,8 @@ model examinees {
   school            String
   department        String
   major             String
-  id                String        @id
+  majors            String
+  id                String      @id
   name              String
   disqualified_flag Boolean     @default(false)
   ns_type           String

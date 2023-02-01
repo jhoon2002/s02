@@ -1,5 +1,14 @@
 const topMenus = [
     {
+        text: '지원자',
+        children: [
+            {
+                text: '등록',
+                path: '/지원자/등록',
+            },
+        ],
+    },
+    {
         text: '전체',
         children: [
             {

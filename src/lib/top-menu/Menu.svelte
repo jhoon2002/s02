@@ -1,5 +1,6 @@
 <script>
 import { clickOutside } from '$lib/utils/clickOutside.js'
+import { fade } from 'svelte/transition'
 import Item from '$lib/top-menu/Item.svelte'
 export let item
 // export let subItems
@@ -22,8 +23,7 @@ export let open = false
     >
         {item.text}
     </div>
-    <!--{#if open}-->
-    <div
+    <!--<div
         class="border px-0 py-2 w-110px rounded absolute left-5px top-40px bg-white duration-200 shadow-md z-1000"
         class:opacity-0={!open}
         class:invisible={!open}
@@ -31,6 +31,15 @@ export let open = false
         {#each item.children as item}
             <Item {item} />
         {/each}
-    </div>
-    <!--{/if}-->
+    </div>-->
+    {#if open}
+        <div
+            transition:fade={{ duration: 100 }}
+            class="border px-0 py-2 w-110px rounded absolute left-5px top-40px bg-white shadow-md z-1000"
+        >
+            {#each item.children as item}
+                <Item {item} />
+            {/each}
+        </div>
+    {/if}
 </div>

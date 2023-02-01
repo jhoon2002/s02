@@ -9,7 +9,7 @@ const menus = [
         icon: 'ph:person-simple-bold',
         children: [
             {
-                text: '대상자 입력',
+                text: '등록',
                 icon: 'ph:fingerprint-duotone',
                 path: '/지원자/대상자 입력',
             },

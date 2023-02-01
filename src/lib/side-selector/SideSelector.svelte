@@ -22,13 +22,15 @@ import { applyAction, deserialize } from '$app/forms'
 
 import { goto } from '$app/navigation'
 import { onMount } from 'svelte'
-let disqualified, targets
+let name, id, disqualified, targets
 let category = []
 let season = []
 let type = []
 let majors = []
-async function handleSubmit() {
+async function handleSubmit(el) {
     let params = []
+    name ? params.push('name=' + name) : false
+    id ? params.push('id=' + id) : false
     disqualified ? params.push('disqualified=true') : false
     targets ? params.push('targets=true') : false
     category.length > 0 ? params.push('category=' + category.join('&category=')) : ''
@@ -39,44 +41,68 @@ async function handleSubmit() {
     const parameters = (params.length > 0 ? '?' : '') + params.join('&')
 
     // console.log('parameters', parameters)
+    // el.focus()
     goto('/전체/전체' + parameters)
+}
+let el
+async function aaa(el) {
+    // el = el
+    console.log('el', el)
+    await handleSubmit()
 }
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
     <div class="p-4 flex flex-col gap-y-4 text-1rem">
-        <input type="submit" value="확인" />
         <div class="flex flex-col gap-y-1">
+            <div>
+                이름 <input
+                    type="input"
+                    bind:value={name}
+                    class="border rounded w-100px"
+                    on:keyup={handleSubmit}
+                />
+            </div>
+            <div>
+                수험번호 <input
+                    type="input"
+                    bind:value={id}
+                    class="border rounded w-100px"
+                    on:change={handleSubmit}
+                />
+            </div>
             <div class="flex gap-x-3">
                 <label>
-                    <input type="checkbox" bind:checked={disqualified} on:change={handleSubmit} /> 지원
-                    자격 탈락자
+                    <input type="checkbox" bind:checked={disqualified} on:change={handleSubmit} />
+                    자격탈락
                 </label>
                 <label>
-                    <input type="checkbox" bind:checked={targets} on:change={handleSubmit} /> 대상자
+                    <input type="checkbox" bind:checked={targets} on:change={handleSubmit} /> 시험대상
                 </label>
             </div>
         </div>
         <div>
-            <label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    value="예술사"
-                    bind:group={category}
-                    on:change={handleSubmit}
-                /> 예술사
-            </label>
-            <label>
-                <input
-                    type="checkbox"
-                    name="category"
-                    value="예술전문사"
-                    bind:group={category}
-                    on:change={handleSubmit}
-                />
-                예술전문사
-            </label>
+            <div class="flex gap-x-3">
+                <label>
+                    <input
+                        type="checkbox"
+                        name="category"
+                        value="예술사"
+                        bind:group={category}
+                        on:change={handleSubmit}
+                    /> 예술사
+                </label>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="category"
+                        value="예술전문사"
+                        bind:group={category}
+                        on:change={handleSubmit}
+                    />
+                    예술전문사
+                </label>
+            </div>
         </div>
         <div class="flex flex-col gap-y-1">
             <label>

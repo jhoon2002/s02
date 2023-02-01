@@ -79,8 +79,8 @@ export async function GET({ url }) {
 
     return res*/
     // console.log('url', url)
-    const name = url.searchParams.get('name')
-    const id = url.searchParams.get('id')
+    const name = url.searchParams.get('name') ? url.searchParams.get('name') : ''
+    const id = url.searchParams.get('id') ? url.searchParams.get('id') : ''
     const disqualified = url.searchParams.get('disqualified')
     const category = url.searchParams.getAll('category')
     const season = url.searchParams.getAll('season')
@@ -120,6 +120,12 @@ export async function GET({ url }) {
                 },
                 {
                     OR: majors.map((item) => ({ majors: item })),
+                },
+                {
+                    name: { contains: name },
+                },
+                {
+                    id: { contains: id },
                 },
             ],
         },

@@ -1,10 +1,12 @@
 <script>
 import ToJson from '$lib/ToJson.svelte'
+import BoardNav from '$lib/board-nav/BoardNav.svelte'
 
 export let data
 </script>
 
-<table>
+<div>총 {data.count}건</div>
+<table class="table-fixed">
     <thead>
         <tr>
             <th>구분</th>
@@ -13,7 +15,7 @@ export let data
             <th>과(전공)</th>
             <th>수험번호</th>
             <th>이름</th>
-            <th>지원자격</th>
+            <th>자격탈락</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +32,8 @@ export let data
         {/each}
     </tbody>
 </table>
+
+<BoardNav page={data.page} total={data.count} />
 
 <style>
 table {

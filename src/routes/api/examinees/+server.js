@@ -79,6 +79,8 @@ export async function GET({ url }) {
 
     return res*/
     // console.log('url', url)
+    const rowsPer = url.searchParams.get('rowsPer') ? url.searchParams.get('rowsPer') : '10'
+    const page = url.searchParams.get('page') ? url.searchParams.get('page') : '1'
     const name = url.searchParams.get('name') ? url.searchParams.get('name') : ''
     const id = url.searchParams.get('id') ? url.searchParams.get('id') : ''
     const disqualified = url.searchParams.get('disqualified')
@@ -96,7 +98,7 @@ export async function GET({ url }) {
 
     // console.log('=======> some', some)
 
-    const res = await prisma.examinees.findMany({
+    const select = {
         select: {
             name: true,
             id: true,
@@ -107,6 +109,8 @@ export async function GET({ url }) {
             type: true,
             majors: true,
         },
+    }
+    const where = {
         where: {
             AND: [
                 {
@@ -129,10 +133,22 @@ export async function GET({ url }) {
                 },
             ],
         },
+    }
+    const orderAndSkip = {
         orderBy: [{ id: 'asc' }, { category: 'asc' }],
-        skip: 0,
-        take: 20,
-    })
+        skip: (parseInt(page) - 1) * parseInt(rowsPer),
+        take: parseInt(rowsPer),
+    }
+    const contents = {
+        ...select,
+        ...where,
+        ...orderAndSkip,
+    }
+    const count = {
+        ...where,
+    }
 
-    return json(res)
+    const res = await prisma.examinees.findMany(contents)
+    const cnt = await prisma.examinees.count(count)
+    return json({ res, cnt })
 }

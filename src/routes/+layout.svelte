@@ -12,13 +12,14 @@ import { goto } from '$app/navigation'
 import topMenus from '$lib/topMenus.js'
 import SideSelector from '$lib/side-selector/SideSelector.svelte'
 import ToJson from '$lib/ToJson.svelte'
-
+import { page } from '$app/stores'
 /** @type {import('./$types').LayoutData} */
 export let data
 
 let isOpen = true
 </script>
 
+<!--<ToJson target={$page.data.count} />-->
 <div class="h-screen flex flex-col">
     <header
         class="flex-none h-60px flex gap-2 items-center
@@ -79,10 +80,10 @@ let isOpen = true
                             </PageTransitions>
                         </div>
                     </article>
-                    <footer
-                        class="flex-none h-70px flex items-center p-2 border-t border-t-solid border-t-gray-200"
-                    >
-                        <div class="text-0.9rem">Korea National University of Arts</div>
+                    <footer class="flex-none h-70px flex items-center justify-center p-2">
+                        <div class="text-0.6rem uppercase tracking-10px">
+                            Drama School, Korea National University of Arts
+                        </div>
                     </footer>
                 </div>
             </OverlayScrollbarsComponent>

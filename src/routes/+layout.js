@@ -1,7 +1,11 @@
 /** @type {import('./$types').LayoutLoad} */
 export function load({ route }) {
-    // console.log('route', route)
+    const rowsPers = {
+        '/전체/전체': 15,
+    }
+
     return {
+        rowsPers,
         routeId: route.id,
     }
 }

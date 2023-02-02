@@ -3,12 +3,15 @@ import ToJson from '$lib/ToJson.svelte'
 import BoardNav from '$lib/board-nav/BoardNav.svelte'
 
 export let data
+export let rowsPer = 10
+$: startNum = (data.page - 1) * rowsPer + 1
 </script>
 
 <div>총 {data.count}건</div>
 <table class="table-fixed">
     <thead>
         <tr>
+            <th>No</th>
             <th>구분</th>
             <th>시기</th>
             <th>전형</th>
@@ -19,8 +22,9 @@ export let data
         </tr>
     </thead>
     <tbody>
-        {#each data.items as item}
+        {#each data.items as item, i}
             <tr>
+                <td>{startNum + i}</td>
                 <td>{item.category}</td>
                 <td>{item.season}</td>
                 <td>{item.type}</td>
@@ -33,7 +37,7 @@ export let data
     </tbody>
 </table>
 
-<BoardNav page={data.page} total={data.count} />
+<BoardNav page={data.page} total={data.count} {rowsPer} />
 
 <style>
 table {

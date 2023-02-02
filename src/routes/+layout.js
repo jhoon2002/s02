@@ -1,22 +1,9 @@
-/** @type {import('./$types').LayoutLoad} */
-export function load({ route }) {
-    const rowsPers = {
-        '/전체/전체': 15,
-    }
-
+export function load(e) {
+    const { url, route } = e
+    const page = url.searchParams.get('page')
     return {
-        rowsPers,
         routeId: route.id,
+        page: isNaN(parseInt(page)) || parseInt(page) < 1 ? 1 : parseInt(page),
+        params: url.searchParams.toString(),
     }
 }
-/*
-export async function load(event) {
-    const response = await event.fetch('/api/examinees?' + new URLSearchParams({}).toString(), {
-        method: 'GET',
-    })
-    const items = await response.json()
-    return {
-        items,
-    }
-}
-*/

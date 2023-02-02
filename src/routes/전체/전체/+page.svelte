@@ -1,53 +1,12 @@
 <script>
 import ToJson from '$lib/ToJson.svelte'
-import BoardNav from '$lib/board-nav/BoardNav.svelte'
+import ExamineesTable from '$lib/examinees-table/ExamineesTable.svelte'
 
 export let data
 export let rowsPer = 10
-$: startNum = (data.page - 1) * rowsPer + 1
+const { page, params } = data
+// $: startNum = (page - 1) * rowsPer + 1
 </script>
 
-<div>총 {data.count}건</div>
-<table class="table-fixed">
-    <thead>
-        <tr>
-            <th>No</th>
-            <th>구분</th>
-            <th>시기</th>
-            <th>전형</th>
-            <th>과(전공)</th>
-            <th>수험번호</th>
-            <th>이름</th>
-            <th>자격탈락</th>
-        </tr>
-    </thead>
-    <tbody>
-        {#each data.items as item, i}
-            <tr>
-                <td>{startNum + i}</td>
-                <td>{item.category}</td>
-                <td>{item.season}</td>
-                <td>{item.type}</td>
-                <td>{item.majors}</td>
-                <td>{item.id}</td>
-                <td>{item.name}</td>
-                <td>{item.disqualified_flag}</td>
-            </tr>
-        {/each}
-    </tbody>
-</table>
-
-<BoardNav page={data.page} total={data.count} {rowsPer} />
-
-<style>
-table {
-    @apply w-full;
-}
-th,
-td {
-    @apply px-2 py-2 border-b text-0.9rem text-left;
-}
-th {
-    @apply text-0.8rem bg-gray-200;
-}
-</style>
+<!-- <ToJson target={data} /> -->
+<ExamineesTable {page} {rowsPer} {params} />

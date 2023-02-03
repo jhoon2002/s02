@@ -1,28 +1,43 @@
-<script context="module">
+<script>
+/*import ToJson from '$lib/ToJson.svelte'
+import { onMount } from 'svelte'
+import BoardNav from '$lib/board-nav/BoardNav.svelte'
+
 export let params
 export let page
 export let rowsPer
-export async function load({ fetch }) {
+// export let items
+let res = []
+let cnt = 0
+
+const load = async (params) => {
     const response = await fetch('/api/examinees?' + params)
-    // await response.json()
-    return {
-        props: {
-            items: 'aaaa',
-        },
-    }
+    return await response.json()
 }
-// $: startNum = (page - 1) * rowsPer + 1
-</script>
 
-<script>
-import ToJson from '$lib/ToJson.svelte'
+onMount(async () => {
+    const result = await load(params)
+    res = result.res
+    cnt = result.cnt
+})
 
+// $: {
+//     const result = await load(params)
+//     res = result.res
+//     cnt = result.cnt
+// }
+$: startNum = (page - 1) * rowsPer + 1*/
+
+import BoardNav from '$lib/board-nav/BoardNav.svelte'
+
+export let page
+export let rowsPer
 export let items
+export let cnt
+export let startNum
 </script>
 
-{items}
-<ToJson target={items} />
-<!--
+<!--<ToJson target={res} />-->
 
 <div>총 {cnt}건</div>
 <table class="table-fixed">
@@ -39,7 +54,7 @@ export let items
         </tr>
     </thead>
     <tbody>
-        {#each res.items as item, i}
+        {#each items as item, i}
             <tr>
                 <td>{startNum + i}</td>
                 <td>{item.category}</td>
@@ -55,8 +70,7 @@ export let items
 </table>
 
 <BoardNav {page} total={cnt} {rowsPer} />
--->
-<!--
+
 <style>
 table {
     @apply w-full;
@@ -69,4 +83,3 @@ th {
     @apply text-0.8rem bg-gray-200;
 }
 </style>
--->

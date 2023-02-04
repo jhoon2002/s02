@@ -1,27 +1,5 @@
 <script>
-// import { applyAction, deserialize } from '$app/forms'
-import { createForm } from 'svelte-forms-lib'
-
-// const { form, errors, handleSubmit } = createForm({
-//     onSubmit: (values) => {
-//         alert(JSON.stringify(values))
-//     },
-// })
-
-import { applyAction, deserialize } from '$app/forms'
-/*async function handleSubmit(event) {
-    const data = new FormData(this)
-    const response = await fetch(this.action, {
-        method: 'POST',
-        body: data,
-    })
-    const result = deserialize(await response.text())
-    console.log(result.data.items)
-    await applyAction(result.data.items)
-}*/
-
 import { goto } from '$app/navigation'
-import { onMount } from 'svelte'
 let name, id, disqualified, targets
 let category = []
 let season = []
@@ -170,6 +148,14 @@ async function aaa(el) {
                     bind:group={majors}
                     on:change={handleSubmit}
                 /> 연기과(남자)
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    value="연기과"
+                    bind:group={majors}
+                    on:change={handleSubmit}
+                /> 연기과
             </label>
             <label>
                 <input

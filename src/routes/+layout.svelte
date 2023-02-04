@@ -81,7 +81,7 @@ let isOpen = true
                         </div>
                     </article>
                     <footer class="flex-none h-70px flex items-center justify-center p-2">
-                        <div class="text-0.6rem uppercase tracking-10px">
+                        <div class="text-0.6rem uppercase tracking-2px">
                             Drama School, Korea National University of Arts
                         </div>
                     </footer>

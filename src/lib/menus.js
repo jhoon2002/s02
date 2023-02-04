@@ -5,7 +5,7 @@ const menus = [
         path: '/',
     },
     {
-        text: '지원자',
+        text: '등록',
         icon: 'ph:person-simple-bold',
         children: [
             {

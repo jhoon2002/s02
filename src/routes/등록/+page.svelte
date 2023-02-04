@@ -1,5 +1,5 @@
 <script>
-import ToJson from '../../../lib/ToJson.svelte'
+import ToJson from '$lib/ToJson.svelte'
 export let form
 export let inputFile
 export let degrees, season

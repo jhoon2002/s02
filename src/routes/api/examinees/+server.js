@@ -4,83 +4,11 @@ import { json } from '@sveltejs/kit'
 
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {
-    /*const res = await prisma.examinees.findMany({
-        select: {
-            name: true,
-            school: true,
-            department: true,
-            major: true,
-        },
-        where: {
-            AND: [
-                /!*{
-                    OR: {
-                        name: {
-                            contains: '종훈',
-                        },
-                        id: {
-                            contains: '23-0002',
-                        },
-                    },
-                },*!/
-                {
-                    OR: [
-                        {
-                            disqualified_flag: false,
-                        },
-                    ],
-                },
-                {
-                    OR: [
-                        {
-                            category: '예술사',
-                        },
-                    ],
-                },
-                {
-                    OR: [
-                        {
-                            season: '8월입시',
-                        },
-                    ],
-                },
-                {
-                    OR: [
-                        {
-                            department: '연기과',
-                        },
-                    ],
-                },
-                {
-                    OR: [
-                        {
-                            major: '연기(여)',
-                        },
-                    ],
-                },
-            ],
-        },
-        orderBy: [
-            {
-                major: 'asc',
-            },
-            {
-                department: 'asc',
-            },
-            {
-                id: 'asc',
-            },
-        ],
-        skip: 0,
-        take: 2,
-    })
-
-    const res = await prisma.examinees.findMany()
-
-    return res*/
-    // console.log('url', url)
     const rowsPer = url.searchParams.get('rowsPer') ? url.searchParams.get('rowsPer') : '10'
-    const page = url.searchParams.get('page') ? url.searchParams.get('page') : '1'
+    const page =
+        isNaN(parseInt(url.searchParams.get('page'))) || parseInt(url.searchParams.get('page')) < 1
+            ? 1
+            : parseInt(url.searchParams.get('page'))
     const name = url.searchParams.get('name') ? url.searchParams.get('name') : ''
     const id = url.searchParams.get('id') ? url.searchParams.get('id') : ''
     const disqualified = url.searchParams.get('disqualified')
@@ -89,14 +17,7 @@ export async function GET({ url }) {
     const type = url.searchParams.getAll('type')
     const majors = url.searchParams.getAll('majors')
     // const degrees = url.searchParams.getAll('degrees')
-    // const types = []
-    // console.log('type', type)
-    // console.log(type.map((item) => ({ type: item })))
-
-    const department = url.searchParams.get('department')
-    // const some = url.searchParams.get('some')
-
-    // console.log('=======> some', some)
+    // const department = url.searchParams.get('department')
 
     const select = {
         select: {
@@ -144,11 +65,11 @@ export async function GET({ url }) {
         ...where,
         ...orderAndSkip,
     }
-    const count = {
+    const cnt = {
         ...where,
     }
 
-    const res = await prisma.examinees.findMany(contents)
-    const cnt = await prisma.examinees.count(count)
-    return json({ res, cnt })
+    const items = await prisma.examinees.findMany(contents)
+    const count = await prisma.examinees.count(cnt)
+    return json({ items, count, page })
 }

@@ -1,62 +1,39 @@
 <script>
-/*import ToJson from '$lib/ToJson.svelte'
-import { onMount } from 'svelte'
-import BoardNav from '$lib/board-nav/BoardNav.svelte'
+import ToJson from '$lib/ToJson.svelte'
+import PageNav from '$lib/page-nav/PageNav.svelte'
 
-export let params
-export let page
-export let rowsPer
-// export let items
-let res = []
-let cnt = 0
-
-const load = async (params) => {
-    const response = await fetch('/api/examinees?' + params)
-    return await response.json()
-}
-
-onMount(async () => {
-    const result = await load(params)
-    res = result.res
-    cnt = result.cnt
-})
-
-// $: {
-//     const result = await load(params)
-//     res = result.res
-//     cnt = result.cnt
-// }
-$: startNum = (page - 1) * rowsPer + 1*/
-
-import BoardNav from '$lib/board-nav/BoardNav.svelte'
-
-export let page
-export let rowsPer
 export let items
-export let cnt
-export let startNum
+export let count
+export let begin
 </script>
 
-<!--<ToJson target={res} />-->
-
-<div>총 {cnt}건</div>
+<div class="flex justify-between mb-1">
+    <div>총 {count}건</div>
+    <div>
+        <input
+            type="input"
+            class="rounded w-40px px-2 text-center text-0.9rem bg-gray-300 text-white"
+            bind:value={items.length}
+        />
+    </div>
+</div>
 <table class="table-fixed">
     <thead>
         <tr>
-            <th>No</th>
-            <th>구분</th>
-            <th>시기</th>
-            <th>전형</th>
-            <th>과(전공)</th>
-            <th>수험번호</th>
-            <th>이름</th>
-            <th>자격탈락</th>
+            <th class="rounded-l-lg w-6%" style="text-align: center">No</th>
+            <th class="w-13%">구분</th>
+            <th class="w-13%">시기</th>
+            <th class="w-15%">전형</th>
+            <th class="w-15%">과(전공)</th>
+            <th class="w-21%">수험번호</th>
+            <th class="w-10%">이름</th>
+            <th class="rounded-r-lg w-7%">자격탈락</th>
         </tr>
     </thead>
     <tbody>
         {#each items as item, i}
-            <tr>
-                <td>{startNum + i}</td>
+            <tr class:bg-gray-50={i % 2 === 1} class="hover:bg-warmgray-100">
+                <td class="text-center">{begin + i}</td>
                 <td>{item.category}</td>
                 <td>{item.season}</td>
                 <td>{item.type}</td>
@@ -69,17 +46,18 @@ export let startNum
     </tbody>
 </table>
 
-<BoardNav {page} total={cnt} {rowsPer} />
-
 <style>
 table {
     @apply w-full;
 }
 th,
 td {
-    @apply px-2 py-2 border-b text-0.9rem text-left;
+    @apply px-2 py-2 text-0.9rem;
+}
+td {
+    @apply border-b;
 }
 th {
-    @apply text-0.8rem bg-gray-200;
+    @apply text-0.8rem bg-gray-400 text-white text-left;
 }
 </style>

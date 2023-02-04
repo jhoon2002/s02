@@ -1,29 +1,11 @@
 const topMenus = [
     {
-        text: '지원자',
-        children: [
-            {
-                text: '등록',
-                path: '/지원자/등록',
-            },
-        ],
+        text: '등록',
+        path: '/등록',
     },
     {
-        text: '전체',
-        children: [
-            {
-                text: '전체',
-                path: '/전체/전체',
-            },
-            {
-                text: '예술사',
-                path: '/전체/예술사',
-            },
-            {
-                text: '예술전문사',
-                path: '/전체/예술전문사',
-            },
-        ],
+        text: '지원자',
+        path: '/지원자',
     },
     {
         text: '연기과',

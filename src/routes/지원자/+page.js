@@ -1,10 +1,13 @@
 export async function load({ fetch, url }) {
-    console.log(url)
-    const response = await fetch('/api/examinees?' + url.searchParams.toString())
+    const response = await fetch('/api/examinees' + url.search)
+    /*
+      json: { items, count, page } //from api
+     */
     const json = await response.json()
     return {
         ...json,
         pathname: url.pathname,
-        search: url.search.replaceAll(/\?+/g, '?'),
+        search: url.searchParams.toString(),
+        begin: (json.page - 1) * json.items.length + 1,
     }
 }

@@ -1,5 +1,6 @@
 <script>
 import { goto } from '$app/navigation'
+import { buildUrl } from '$lib/utils/route.js'
 let name, id, disqualified, targets
 let category = []
 let season = []
@@ -18,9 +19,10 @@ async function handleSubmit(el) {
 
     const parameters = (params.length > 0 ? '?' : '') + params.join('&')
 
-    // console.log('parameters', parameters)
-    // el.focus()
-    goto('/전체/전체' + parameters)
+    // const url = buildUrl('/users/[user]', { user: 123, tab: 'settings' })
+    // goto(url) // "/users/123?tab=settings"
+
+    goto('/지원자' + parameters)
 }
 let el
 async function aaa(el) {

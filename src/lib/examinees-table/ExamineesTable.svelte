@@ -1,20 +1,30 @@
 <script>
 import ToJson from '$lib/ToJson.svelte'
 import PageNav from '$lib/page-nav/PageNav.svelte'
+import { createEventDispatcher } from 'svelte'
+const dispatch = createEventDispatcher()
 
 export let items
 export let count
 export let begin
+
+let rows = items.length
 </script>
 
 <div class="flex justify-between mb-1">
     <div>총 {count}건</div>
     <div>
-        <input
-            type="input"
-            class="rounded w-40px px-2 text-center text-0.9rem bg-gray-300 text-white"
-            bind:value={items.length}
-        />
+        <form method="POST" action="/지원자?/somename">
+            <input
+                type="input"
+                class="rounded w-40px px-2 text-center text-0.9rem bg-gray-300 text-white"
+                bind:value={rows}
+                on:change={() => {
+                    dispatch('changeRowsPer', rows)
+                }}
+            />
+            <input type="submit" value="OK" />
+        </form>
     </div>
 </div>
 <table class="table-fixed">

@@ -6,7 +6,9 @@ import { goto } from '$app/navigation'
 
 export let data
 async function rowsPerHandler(e) {
-    goto(`${data.pathname}?${data.search.replaceAll(/&*rowsPer=\d*/g, '')}&rowsPer=${e.detail}`)
+    goto(
+        `${data.pathname}?${data.search.replaceAll(/&*rowsPer=\d*/g, '')}&rowsPer=${e.detail.text}`,
+    )
 }
 </script>
 
@@ -16,4 +18,10 @@ async function rowsPerHandler(e) {
     begin={data.begin}
     on:changeRowsPer={rowsPerHandler}
 />
-<PageNav count={data.count} page={data.page} pathname={data.pathname} search={data.search} />
+<PageNav
+    count={data.count}
+    page={data.page}
+    pathname={data.pathname}
+    search={data.search}
+    rowsPer={data.rowsPer}
+/>

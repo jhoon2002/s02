@@ -8,7 +8,13 @@ export let items
 export let count
 export let begin
 
-let rows = items.length
+let rows
+let options = [
+    { id: 1, text: '10' },
+    { id: 2, text: '12' },
+    { id: 3, text: '15' },
+    { id: 4, text: '20' },
+]
 </script>
 
 <div class="flex justify-between mb-1">
@@ -21,10 +27,9 @@ let rows = items.length
             }}
             class="text-0.9rem bg-gray-400 text-white p-1 rounded"
         >
-            <option class="p-2" value="10">10</option>
-            <option class="p-2" value="12">12</option>
-            <option class="p-2" value="15">15</option>
-            <option class="p-2" value="20">20</option>
+            {#each options as option}
+                <option value={option}>{option.text}</option>
+            {/each}
         </select>
         <!-- <input
             type="input"

@@ -5,7 +5,7 @@ import { json } from '@sveltejs/kit'
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {
     const rowsPer = url.searchParams.get('rowsPer') ? url.searchParams.get('rowsPer') : '10'
-    const page =
+    let page =
         isNaN(parseInt(url.searchParams.get('page'))) || parseInt(url.searchParams.get('page')) < 1
             ? 1
             : parseInt(url.searchParams.get('page'))
@@ -19,18 +19,6 @@ export async function GET({ url }) {
     // const degrees = url.searchParams.getAll('degrees')
     // const department = url.searchParams.get('department')
 
-    const select = {
-        select: {
-            name: true,
-            id: true,
-            disqualified_flag: true,
-            category: true,
-            degrees: true,
-            season: true,
-            type: true,
-            majors: true,
-        },
-    }
     const where = {
         where: {
             AND: [
@@ -55,6 +43,25 @@ export async function GET({ url }) {
             ],
         },
     }
+    const cnt = {
+        ...where,
+    }
+    const count = await prisma.examinees.count(cnt)
+
+    page = page > Math.ceil(count / rowsPer) ? 1 : page // rowsPer 의 변화로 현재 페이지가 없는 페이지가 된 경우
+
+    const select = {
+        select: {
+            name: true,
+            id: true,
+            disqualified_flag: true,
+            category: true,
+            degrees: true,
+            season: true,
+            type: true,
+            majors: true,
+        },
+    }
     const orderAndSkip = {
         orderBy: [{ id: 'asc' }, { category: 'asc' }],
         skip: (parseInt(page) - 1) * parseInt(rowsPer),
@@ -65,11 +72,6 @@ export async function GET({ url }) {
         ...where,
         ...orderAndSkip,
     }
-    const cnt = {
-        ...where,
-    }
-
     const items = await prisma.examinees.findMany(contents)
-    const count = await prisma.examinees.count(cnt)
-    return json({ items, count, page })
+    return json({ items, count, page, rowsPer })
 }

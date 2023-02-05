@@ -98,5 +98,9 @@ const topMenus = [
             },
         ],
     },
+    {
+        text: '테스트',
+        path: '/테스트',
+    },
 ]
 export default topMenus

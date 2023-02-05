@@ -2,14 +2,14 @@
 import ToJson from '$lib/ToJson.svelte'
 import ExamineesTable from '$lib/examinees-table/ExamineesTable.svelte'
 import PageNav from '$lib/page-nav/PageNav.svelte'
+import { goto } from '$app/navigation'
 
 export let data
-function rowsPerHandler(e) {
-    console.log('여기요..', e.detail)
+async function rowsPerHandler(e) {
+    goto(`${data.pathname}?${data.search.replaceAll(/&*rowsPer=\d*/g, '')}&rowsPer=${e.detail}`)
 }
 </script>
 
-<!-- <ToJson target={data} /> -->
 <ExamineesTable
     items={data.items}
     count={data.count}

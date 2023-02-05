@@ -14,17 +14,26 @@ let rows = items.length
 <div class="flex justify-between mb-1">
     <div>총 {count}건</div>
     <div>
-        <form method="POST" action="/지원자?/somename">
-            <input
-                type="input"
-                class="rounded w-40px px-2 text-center text-0.9rem bg-gray-300 text-white"
-                bind:value={rows}
-                on:change={() => {
-                    dispatch('changeRowsPer', rows)
-                }}
-            />
-            <input type="submit" value="OK" />
-        </form>
+        <select
+            bind:value={rows}
+            on:change={() => {
+                dispatch('changeRowsPer', rows)
+            }}
+            class="text-0.9rem bg-gray-400 text-white p-1 rounded"
+        >
+            <option class="p-2" value="10">10</option>
+            <option class="p-2" value="12">12</option>
+            <option class="p-2" value="15">15</option>
+            <option class="p-2" value="20">20</option>
+        </select>
+        <!-- <input
+            type="input"
+            class="rounded w-40px px-2 text-center text-0.9rem bg-gray-300 text-white"
+            bind:value={rows}
+            on:change={() => {
+                dispatch('changeRowsPer', rows)
+            }}
+        /> -->
     </div>
 </div>
 <table class="table-fixed">

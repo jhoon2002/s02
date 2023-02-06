@@ -1,39 +1,22 @@
 <script>
 import 'uno.css'
 import '@unocss/reset/tailwind.css'
-import SideMenu from '$lib/side-menu/SideMenu.svelte'
 import PageTransitions from '$lib/PageTransitions.svelte'
 import 'overlayscrollbars/overlayscrollbars.css'
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte'
 import '$lib/css/styles.css'
-import items from '$lib/menus.js'
 import TopMenu from '$lib/top-menu/TopMenu.svelte'
 import { goto } from '$app/navigation'
 import topMenus from '$lib/topMenus.js'
-import SideSelector from '$lib/side-selector/SideSelector.svelte'
-import ToJson from '$lib/ToJson.svelte'
-import { page } from '$app/stores'
-import Test from '$lib/Test.svelte'
+import { getSide } from '$lib/utils/route.js'
 
 /** @type {import('./$types').LayoutData} */
 export let data
 
-let sideComponent
-$: {
-    switch (data.routeId) {
-        case '/지원자':
-            sideComponent = SideSelector
-            break
-        default:
-            sideComponent = Test
-            break
-    }
-}
-
+let sidesObj = getSide(topMenus, {})
 let isOpen = true
 </script>
 
-<!--<ToJson target={$page.data.count} />-->
 <div class="h-screen flex flex-col">
     <header
         class="flex-none h-60px flex gap-2 items-center
@@ -75,18 +58,10 @@ let isOpen = true
             >
                 <aside class="pt-0.5rem overflow-y-auto w-250px">
                     <div class="pr-2">
-                        <div>
-                            <button
-                                on:click={() => {
-                                    sideComponent = SideSelector
-                                }}
-                            >
-                                변경
-                            </button>
-                        </div>
-
                         <!-- <SideMenu {items} routeId={data.routeId} /> -->
-                        <svelte:component this={sideComponent} />
+                        <PageTransitions type="fade" refresh={data.routeId}>
+                            <svelte:component this={sidesObj[data.routeId]} />
+                        </PageTransitions>
                     </div>
                 </aside>
             </OverlayScrollbarsComponent>

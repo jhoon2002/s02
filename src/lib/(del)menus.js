@@ -1,4 +1,4 @@
-const menus = [
+const delMenus = [
     {
         text: 'HOME',
         icon: 'ph:house-line-bold',
@@ -144,4 +144,4 @@ const menus = [
         ],
     },
 ]
-export default menus
+export default delMenus

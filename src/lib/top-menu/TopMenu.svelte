@@ -5,6 +5,8 @@ export let items
 
 <div class="ml-4rem flex">
     {#each items as item}
-        <Menu {item} />
+        {#if item.path !== '/'}
+            <Menu {item} />
+        {/if}
     {/each}
 </div>

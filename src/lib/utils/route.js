@@ -37,3 +37,13 @@ export function buildUrl(path, params) {
     const search = new URLSearchParams(query).toString()
     return `${interpolatedPath}${search ? `?${search}` : ''}`
 }
+export function getSide(items, arr) {
+    items.forEach((item) => {
+        if (item.children?.length > 0) {
+            getSide(item.children, arr)
+        } else {
+            arr[item.path] = item.side
+        }
+    })
+    return arr
+}

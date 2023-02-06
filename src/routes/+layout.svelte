@@ -13,8 +13,22 @@ import topMenus from '$lib/topMenus.js'
 import SideSelector from '$lib/side-selector/SideSelector.svelte'
 import ToJson from '$lib/ToJson.svelte'
 import { page } from '$app/stores'
+import Test from '$lib/Test.svelte'
+
 /** @type {import('./$types').LayoutData} */
 export let data
+
+let sideComponent
+$: {
+    switch (data.routeId) {
+        case '/지원자':
+            sideComponent = SideSelector
+            break
+        default:
+            sideComponent = Test
+            break
+    }
+}
 
 let isOpen = true
 </script>
@@ -61,8 +75,18 @@ let isOpen = true
             >
                 <aside class="pt-0.5rem overflow-y-auto w-250px">
                     <div class="pr-2">
+                        <div>
+                            <button
+                                on:click={() => {
+                                    sideComponent = SideSelector
+                                }}
+                            >
+                                변경
+                            </button>
+                        </div>
+
                         <!-- <SideMenu {items} routeId={data.routeId} /> -->
-                        <SideSelector />
+                        <svelte:component this={sideComponent} />
                     </div>
                 </aside>
             </OverlayScrollbarsComponent>

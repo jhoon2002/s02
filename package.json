@@ -33,6 +33,7 @@
         "prisma": "^4.9.0",
         "svelte": "^3.54.0",
         "svelte-check": "^3.0.1",
+        "svelte-data-grid": "^3.0.0",
         "svelte-forms-lib": "^2.0.1",
         "typescript": "^4.9.3",
         "unocss": "^0.48.4",

@@ -1,30 +1,30 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Yeo\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D @iconify-json/phosphor
+  C:\Program Files\nodejs\node.exe C:\Users\user\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add -D @revolist/revogrid/loader
 
 PATH: 
-  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\cmd;C:\Program Files\Curl\bin;C:\Program Files\nodejs\;C:\Users\Yeo\AppData\Local\pnpm;C:\Users\Yeo\AppData\Local\Microsoft\WindowsApps;C:\Users\Yeo\AppData\Local\afreeca;C:\Users\Yeo\AppData\Local\Yarn\bin;C:\Users\Yeo\AppData\Roaming\npm\node_modules;C:\Users\Yeo\AppData\Roaming\npm;D:\Projects\s02\node_modules\.bin
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\user\AppData\Local\Microsoft\WindowsApps;C:\Users\user\AppData\Roaming\npm;C:\workspace\s02\node_modules\.bin
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  16.19.0
+  19.4.0
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@iconify-json%2fphosphor: Not found
-      at Request.params.callback [as _callback] (C:\Users\Yeo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
-      at Request.self.callback (C:\Users\Yeo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
+  Error: https://registry.yarnpkg.com/@revolist%2frevogrid/loader: Request "https://registry.yarnpkg.com/@revolist%2frevogrid/loader" returned a 405
+      at params.callback [as _callback] (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66154:18)
+      at self.callback (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
       at Request.emit (node:events:513:28)
-      at Request.<anonymous> (C:\Users\Yeo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
       at Request.emit (node:events:513:28)
-      at IncomingMessage.<anonymous> (C:\Users\Yeo\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
+      at IncomingMessage.<anonymous> (C:\Users\user\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
       at Object.onceWrapper (node:events:627:28)
       at IncomingMessage.emit (node:events:525:35)
-      at endReadableNT (node:internal/streams/readable:1358:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
 npm manifest: 
   {
@@ -43,6 +43,9 @@ npm manifest:
       "devDependencies": {
           "@iconify-json/carbon": "^1.1.14",
           "@iconify-json/fluent": "^1.1.17",
+          "@iconify-json/ph": "^1.1.3",
+          "@iconify/svelte": "^3.1.0",
+          "@revolist/svelte-datagrid": "^3.2.16",
           "@sveltejs/adapter-auto": "^1.0.0",
           "@sveltejs/kit": "^1.0.0",
           "@sveltejs/vite-plugin-svelte": "^2.0.2",
@@ -52,7 +55,6 @@ npm manifest:
           "@unocss/preset-uno": "^0.48.4",
           "@unocss/preset-web-fonts": "^0.48.4",
           "@unocss/transformer-directives": "^0.48.4",
-          "bootstrap": "^5.2.3",
           "iter-ops": "^3.0.7",
           "overlayscrollbars": "^2.0.3",
           "overlayscrollbars-svelte": "^0.4.0",
@@ -61,7 +63,7 @@ npm manifest:
           "prisma": "^4.9.0",
           "svelte": "^3.54.0",
           "svelte-check": "^3.0.1",
-          "sveltestrap": "^5.10.0",
+          "svelte-forms-lib": "^2.0.1",
           "typescript": "^4.9.3",
           "unocss": "^0.48.4",
           "vite": "^4.0.0",
@@ -231,6 +233,20 @@ Lockfile:
     dependencies:
       "@iconify/types" "*"
   
+  "@iconify-json/ph@^1.1.3":
+    version "1.1.3"
+    resolved "https://registry.yarnpkg.com/@iconify-json/ph/-/ph-1.1.3.tgz#3534e9b773e56dbc52ca62b748b5fa78dc927643"
+    integrity sha512-QSzWMGF8GiBPW89RpQ3bEwEjuRWTv/xxskStUpK7tsXlz3qoPTEM5CQxDUpzUmc9luAWViqD/shIUiuNhUeolw==
+    dependencies:
+      "@iconify/types" "*"
+  
+  "@iconify/svelte@^3.1.0":
+    version "3.1.0"
+    resolved "https://registry.yarnpkg.com/@iconify/svelte/-/svelte-3.1.0.tgz#a295d95b2fefec437b296c25a8059a620c95c029"
+    integrity sha512-G1w1dcO7eiD+JmQJNwNW4qnAn86oQxKLe1P/iAPjJ0qYYuF7Pb60TPrlcj4+2gu4SXe3a0Jrv++8YmceG+gX/g==
+    dependencies:
+      "@iconify/types" "^2.0.0"
+  
   "@iconify/types@*", "@iconify/types@^2.0.0":
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
@@ -305,11 +321,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
     integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
   
-  "@popperjs/core@^2.9.2":
-    version "2.11.6"
-    resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
-    integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
-  
   "@prisma/client@^4.9.0":
     version "4.9.0"
     resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.9.0.tgz#4a4068f3540732ea5723c008d49ed684d20f9340"
@@ -327,6 +338,21 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-4.9.0.tgz#05a1411964e047c1bc43f777c7a1c69f86a2a26c"
     integrity sha512-t1pt0Gsp+HcgPJrHFc+d/ZSAaKKWar2G/iakrE07yeKPNavDP3iVKPpfXP22OTCHZUWf7OelwKJxQgKAm5hkgw==
   
+  "@revolist/revogrid@^3.2.15":
+    version "3.3.2"
+    resolved "https://registry.yarnpkg.com/@revolist/revogrid/-/revogrid-3.3.2.tgz#3c0e33628148e762d1ff909a1c73b42c4f64f273"
+    integrity sha512-xAT7ClKxtONpHKdiRDdiyppYt2RSA7r40oTR3LXJJ2qHQucAmeitjBLko2t7hw8ZGI8StI9vMgaL42hx70dvCQ==
+    dependencies:
+      lodash "^4.17.20"
+  
+  "@revolist/svelte-datagrid@^3.2.16":
+    version "3.2.16"
+    resolved "https://registry.yarnpkg.com/@revolist/svelte-datagrid/-/svelte-datagrid-3.2.16.tgz#0d84e18854852bdfd368be967d9a9c6a58679701"
+    integrity sha512-zSLpHxg/2hAo85UFCUFYK3+T7TVwZI1hSNdYguPiUt0m4zygdLL8YpPYv3x4pEOM5G6JzyciDtxlzB5u9iA0GQ==
+    dependencies:
+      "@revolist/revogrid" "^3.2.15"
+      "@stencil/core" "2.17.4"
+  
   "@rollup/pluginutils@^5.0.2":
     version "5.0.2"
     resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.0.2.tgz#012b8f53c71e4f6f9cb317e311df1404f56e7a33"
@@ -335,6 +361,11 @@ Lockfile:
       "@types/estree" "^1.0.0"
       estree-walker "^2.0.2"
       picomatch "^2.3.1"
+  
+  "@stencil/core@2.17.4":
+    version "2.17.4"
+    resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.17.4.tgz#e25d61656dbbaeb41b879f2b2a785e62c60fab9b"
+    integrity sha512-SGRlHpjV1RyFvzw6jFMVKpLNox9Eds3VvpbpD2SW9CuxdLonHDSFtQks5zmT4zs1Rse9I6kFc2mFK/dHNTalkg==
   
   "@sveltejs/adapter-auto@^1.0.0":
     version "1.0.2"
@@ -590,11 +621,6 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
     integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
   
-  bootstrap@^5.2.3:
-    version "5.2.3"
-    resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.2.3.tgz#54739f4414de121b9785c5da3c87b37ff008322b"
-    integrity sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==
-  
   brace-expansion@^1.1.7:
     version "1.1.11"
     resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -718,6 +744,11 @@ Lockfile:
     version "6.1.1"
     resolved "https://registry.yarnpkg.com/defu/-/defu-6.1.1.tgz#a12c712349197c545dc61d3cd3b607b4cc7ef0c1"
     integrity sha512-aA964RUCsBt0FGoNIlA3uFgo2hO+WWC0fiC6DBps/0SFzkKcYoM/3CzVLIa5xSsrFjdioMdYgAIbwo80qp2MoA==
+  
+  dequal@^2.0.2:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/dequal/-/dequal-2.0.3.tgz#2644214f1997d39ed0ee0ece72335490a7ac67be"
+    integrity sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==
   
   destr@^1.2.0:
     version "1.2.2"
@@ -1006,6 +1037,11 @@ Lockfile:
     integrity sha512-iPZK6eYjbxRu3uB4/WZ3EsEIMJFMqAoopl3R+zuq0UjcAm/MO6KCweDgPfP3elTztoKP3KtnVHxTn2NHBSDVUw==
     dependencies:
       p-locate "^5.0.0"
+  
+  lodash@^4.17.20:
+    version "4.17.21"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+    integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
   
   magic-string@^0.27.0:
     version "0.27.0"
@@ -1387,6 +1423,13 @@ Lockfile:
       svelte-preprocess "^5.0.0"
       typescript "^4.9.4"
   
+  svelte-forms-lib@^2.0.1:
+    version "2.0.1"
+    resolved "https://registry.yarnpkg.com/svelte-forms-lib/-/svelte-forms-lib-2.0.1.tgz#64895abacda4a98822d2ae52842a6b8f9aeebcb1"
+    integrity sha512-kwbJ3ynsepsrrJyAMrvSc0Lj/myc9vfI2DL8OKxgArZimrNYsRh1gENYhvrcKEI3BiZrv8q3VFfmGo/GMyk7Zg==
+    dependencies:
+      dequal "^2.0.2"
+  
   svelte-hmr@^0.15.1:
     version "0.15.1"
     resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.15.1.tgz#d11d878a0bbb12ec1cba030f580cd2049f4ec86b"
@@ -1408,13 +1451,6 @@ Lockfile:
     version "3.55.1"
     resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.55.1.tgz#6f93b153e5248039906ce5fe196efdb9e05dfce8"
     integrity sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==
-  
-  sveltestrap@^5.10.0:
-    version "5.10.0"
-    resolved "https://registry.yarnpkg.com/sveltestrap/-/sveltestrap-5.10.0.tgz#4bea3caf06849f20cfcd97c4687256111dc76e9e"
-    integrity sha512-k6Ob+6G2AMYvBidXHBKM9W28fJqFHbmosqCe/NC8pv6TV7K+v47Yw+zmnLWkjqCzzmjkSLkL48SrHZrlWc9mYQ==
-    dependencies:
-      "@popperjs/core" "^2.9.2"
   
   tiny-glob@^0.2.9:
     version "0.2.9"
